@@ -1,12 +1,29 @@
-name: Build
+name: CI/CD
 
 on:
-  - push
+  push:
+    branches:
+      - master
 
 jobs:
-  build:
+  compile:
+    name: Compile
     runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Set up Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - name: Install dependencies
+        run: yarn --frozen-lockfile --ignore-optional
+      - name: Compile
+        run: yarn build
 
+  test:
+    name: Test (Node ${{ matrix.node }})
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         node:
@@ -15,20 +32,37 @@ jobs:
           - '12'
           - '13'
           - '14'
-
-    name: Node ${{ matrix.node }}
-
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-
       - name: Set up Node.js
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node }}
-
-      - name: Dependencies
+      - name: Install dependencies
         run: yarn --frozen-lockfile --ignore-optional
-
       - name: Test
         run: yarn jest
+
+  release:
+    name: Release
+    needs: [compile, test]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - name: Install dependencies
+        run: yarn --frozen-lockfile --ignore-optional
+      - name: Build
+        run: yarn build
+      - name: Contents of package
+        run: npm publish --dry-run
+      - name: Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: yarn semantic-release
