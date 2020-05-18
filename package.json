@@ -1,11 +1,28 @@
 {
   "name": "@suin/is-object",
-  "description": "TypeScript friendly isObject function",
   "version": "1.0.0",
-  "main": "index.js",
-  "repository": "git@github.com:suin/js-is-object.git",
-  "author": "suin <suinyeze@gmail.com>",
+  "description": "TypeScript friendly isObject function",
+  "homepage": "https://github.com/suin/isObject.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/suin/isObject.js.git"
+  },
   "license": "MIT",
+  "author": "suin <suinyeze@gmail.com>",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "files": [
+    "index.js",
+    "index.d.ts"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "clean": "git clean -Xdf -e '!/.idea/**' -e '!/node_modules' -e '!/node_modules/**'",
+    "clean:dry": "git clean -Xdfn -e '!/.idea/**' -e '!/node_modules' -e '!/node_modules/**'",
+    "reset": "git clean -Xdf -e '!/.idea/**'",
+    "reset:dry": "git clean -Xdfn -e '!/.idea/**'",
+    "test": "jest"
+  },
   "prettier": {
     "semi": false,
     "singleQuote": true,
@@ -19,8 +36,11 @@
     "@types/jest": "^25.2.2",
     "jest": "^26.0.1",
     "prettier": "^2.0",
+    "sort-package-json": "^1.42.2",
     "ts-jest": "^26.0.0",
     "typescript": "^3.9"
   },
-  "dependencies": {}
+  "publishConfig": {
+    "access": "public"
+  }
 }
