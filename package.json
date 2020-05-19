@@ -19,6 +19,7 @@
     "build": "tsc",
     "clean": "git clean -Xdf -e '!/.idea/**' -e '!/node_modules' -e '!/node_modules/**'",
     "clean:dry": "git clean -Xdfn -e '!/.idea/**' -e '!/node_modules' -e '!/node_modules/**'",
+    "reference": "typedoc --includeVersion --exclude 'node_modules/**/*' --exclude '**/*+(.spec|.test).ts' --gitRevision \"`git describe --tags --abbrev=0`\" --out reference .",
     "reset": "git clean -Xdf -e '!/.idea/**'",
     "reset:dry": "git clean -Xdfn -e '!/.idea/**'",
     "semantic-release": "semantic-release",
@@ -42,6 +43,7 @@
     "semantic-release": "^17.0.7",
     "sort-package-json": "^1.42.2",
     "ts-jest": "^26.0.0",
+    "typedoc": "^0.17.7",
     "typescript": "^3.9"
   },
   "publishConfig": {
@@ -68,6 +70,7 @@
         "@semantic-release/git",
         {
           "assets": [
+            "package.json",
             "CHANGELOG.md"
           ]
         }

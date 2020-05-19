@@ -1,0 +1,26 @@
+name: API Reference
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  reference:
+    name: API Reference
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - name: Install dependencies
+        run: yarn --frozen-lockfile --ignore-optional
+      - name: Generate reference
+        run: yarn reference
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+         github_token: ${{ secrets.GITHUB_TOKEN }}
+         publish_dir: ./reference
