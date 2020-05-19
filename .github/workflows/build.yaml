@@ -71,7 +71,6 @@ jobs:
         uses: andstor/file-existence-action@v1
         with:
           files: 'reference'
-          allow_failure: 'true'
       - name: Publish API reference
         uses: peaceiris/actions-gh-pages@v3
         if: steps.check_reference.outputs.files_exists == 'true'
