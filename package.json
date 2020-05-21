@@ -2,30 +2,36 @@
   "name": "@suin/is-object",
   "version": "1.1.2",
   "description": "TypeScript friendly isObject function",
-  "homepage": "https://github.com/suin/isObject.js",
+  "homepage": "https://github.com/suin/isObject.js#readme",
+  "bugs": {
+    "url": "https://github.com/suin/isObject.js/issues"
+  },
   "repository": {
     "type": "git",
     "url": "git@github.com:suin/isObject.js.git"
   },
+  "keywords": [],
   "license": "MIT",
   "author": "suin <suinyeze@gmail.com>",
   "main": "index.js",
   "types": "index.d.ts",
   "files": [
-    "*.{js,ts,map}",
+    "**/*.{js,ts,map}",
     "!*.{test,spec}.*"
   ],
   "scripts": {
     "build": "tsc",
     "clean": "git clean -Xdf -e '!/.idea/**' -e '!/node_modules' -e '!/node_modules/**'",
     "clean:dry": "git clean -Xdfn -e '!/.idea/**' -e '!/node_modules' -e '!/node_modules/**'",
-    "reference": "typedoc --includeVersion --exclude 'node_modules/**/*' --exclude '**/*+(.spec|.test).ts' --gitRevision \"`git describe --tags --abbrev=0`\" --out reference .",
+    "pack:preview": "PACKAGE=$(npm pack 2> /dev/null) sh -c 'set -eu && tar tf $PACKAGE | sort && rm $PACKAGE'",
+    "reference": "typedoc --includeVersion --exclude 'node_modules/**/*' --exclude '**/*+(.spec|.test).ts' --stripInternal --gitRevision \"`git describe --tags --abbrev=0 || echo master`\" --out reference .",
     "reset": "git clean -Xdf -e '!/.idea/**'",
     "reset:dry": "git clean -Xdfn -e '!/.idea/**'",
     "semantic-release": "semantic-release",
     "test": "jest"
   },
   "prettier": {
+    "arrowParens": "avoid",
     "semi": false,
     "singleQuote": true,
     "trailingComma": "all"

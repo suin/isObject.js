@@ -60,7 +60,7 @@ jobs:
       - name: Build
         run: yarn build
       - name: Contents of package
-        run: npm publish --dry-run
+        run: yarn pack:preview
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
