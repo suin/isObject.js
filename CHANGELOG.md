@@ -1,3 +1,10 @@
+## [1.1.3](https://github.com/suin/isObject.js/compare/v1.1.2...v1.1.3) (2020-06-17)
+
+
+### Bug Fixes
+
+* 🐛 dummy force release ([09a8505](https://github.com/suin/isObject.js/commit/09a8505998f4f4b2fe9c24e818742470c4667e46))
+
 ## [1.1.2](https://github.com/suin/isObject.js/compare/v1.1.1...v1.1.2) (2020-05-19)
 
 
