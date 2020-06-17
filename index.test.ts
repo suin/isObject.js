@@ -64,13 +64,13 @@ const toTable = <T>(value: T): T[] => [value]
 
 describe('isObject', () => {
   describe('falsy', () => {
-    test.each(falsyValues.map(toTable))('%O', (value) => {
+    test.each(falsyValues.map(toTable))('%O', value => {
       expect(isObject(value)).toBe(false)
     })
   })
 
   describe('truthy', () => {
-    test.each(truthyValues.map(toTable))('%O', (value) => {
+    test.each(truthyValues.map(toTable))('%O', value => {
       expect(isObject(value)).toBe(true)
     })
   })
